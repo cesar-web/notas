@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,12 +10,22 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet"> 
 </head>
 <body>
+    <?php // Menus for the different user status (registered / not registered)
+    if(!isset($_SESSION['user'])){ ?>
     <header class="menu">
         <div><a href="#"><img class="menu-logo" src="images/logo.svg" /></a></div>
         <div><a href="#">Notas</a></div>
-        <div><a href="#">Acceder</a></div>
+        <div><a href="acceder/">Acceder</a></div>
         <div><a href="registro/">Crear una cuenta</a></div>
     </header>
+    <?php 
+    } else { ?>
+        <header class="menu">
+        <div><a href="#"><img class="menu-logo" src="images/logo.svg" /></a></div>
+        <div><a href="salir.php">Salir</a></div>
+    </header>
+    <?php } ?>
+    
 
     <main class="notes"><br /><br /><br /><br />
     <?php for($i = 0; $i < 10; ++$i){ ?>
@@ -35,9 +46,13 @@
     <br /><br /><br /><br />
     </main>
 
+    <?php // Footer banner to register
+    if(!isset($_SESSION['user'])){ ?>
     <footer>
-        Quieres guardar tus notas? <a href="registro/">Registrate!</a>
+        Quieres guardar tus notas? <a href="registro/"><u>Registrate!</u></a>
     </footer>
+    <?php } ?>
+    
     <div class="add-note" id="myBtn"><img class="button-image" src="images/plus.png"/></div>
 
 
